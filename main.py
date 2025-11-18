@@ -65,7 +65,7 @@ class LinkdeList:
         previous.next = None
         
     def delete_by_value(self,value):
-        
+        pass
         
     def print_list(self):
         curr = self.head
@@ -74,13 +74,21 @@ class LinkdeList:
             curr = curr.next
         print("None")
         
-# 1->2->90->3->4
+# 1->2->3->4->None
 linklist = LinkdeList(A)
 
-# linklist.insert_at_begining(5)
-# linklist.insert_at_end(9)
+# 5->1->2->3->4->None
+linklist.insert_at_begining(5)
+
+# 5->1->2->3->4->9->None
+linklist.insert_at_end(9)
+
+# 5->1->90->2->3->4->9->None
 linklist.insert_at_position(2,90)
+
+# 5->1->90->2->3->4->None
 linklist.delete_at_end()
+
 linklist.print_list()
 
         
