@@ -91,4 +91,68 @@ linklist.delete_at_end()
 
 linklist.print_list()
 
+
+from collections import OrderedDict
+        
+class LRUCache:
+    
+    def __init__(self,capacity):
+        self.cache = OrderedDict()
+        self.capacity = capacity
+        
+    def get(self,index):
+        if index in self.cache:
+            self.cache.move_to_end(index)
+            return self.cache[index]
+        return -1
+    
+    def put(self,index,value):
+        if index in self.cache:
+            self.cache.move_to_end(index)
+        self.cache[index] = value
+        if len(self.cache) > self.capacity:
+            self.cache.popitem(last=False)
+        
+        
+class Node:
+    def __init__(self,key,value):
+        self.key = key
+        self.val = value
+        self.next = self.prev = None
+        
+
+class LRUCache:
+    
+    def __init__(self,capacity):
+        self.capacity = capacity
+        self.cache = {}
+        self.left = self.right = Node(0,0)
+        self.left.next ,self.right.prev = self.right, self.left
+        
+    def _remove(self,node:Node):
+        prev,next = node.prev,node.next
+        prev.next, next.prev = next,prev
+    
+    def _insert(self,node):
+        prev,next = self.right.prev, self.right
+        prev.next = next.prev = node
+        node.next ,node.prev = next,prev
+        
+    def get(self,index):
+        if index in self.cache:
+            self._remove(self.cache[index])
+            self._insert(self.cache[index])
+            return self.cache[index].val
+        return -1
+            
+    def put(self,index,value):
+        if index in self.cache:
+            self._remove(self.cache[index])
+        self.cache[index] = Node(index,value)
+        self._insert(self.cache[index])
+        
+        if len(self.cache) > self.capacity:
+            lru = self.left.next
+            self._remove(lru)
+            del self.cache[lru.index]
         
