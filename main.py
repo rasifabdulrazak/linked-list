@@ -104,7 +104,7 @@ def check_palindrome_approach3(node:Node):
 
 # print(check_palindrome_approach3(A),"AProch3")
 
-def delete_nth_node_from_last(node:Node,val):
+def delete_nth_node_from_last_two_step(node:Node,val):
     sentinel = Node(0)
     sentinel.next = node
     length = 0
@@ -118,7 +118,31 @@ def delete_nth_node_from_last(node:Node,val):
     prev.next = prev.next.next
     return sentinel.next
 
-print(delete_nth_node_from_last(A,2))
+# print(delete_nth_node_from_last_two_step(A,2))
+
+def delete_nth_node_from_last_one_step(node:Node,val):
+    sentinel = Node(0)
+    sentinel.next = node
+    fast = sentinel
+    for _ in range(val):
+        fast = fast.next
+    slow = sentinel
+    while(slow.next):
+        slow = slow.next
+        fast = fast.next
+    slow.next = slow.next.next
+    return sentinel.next
+
+# print(delete_nth_node_from_last_two_step(A,2))
+
+def remove_duplicate_sorted_vals(node:Node):
+    curr = node
+    while curr and curr.next:
+        if curr.val == curr.next.val:
+            curr.next = curr.next.next
+        else:
+            curr = curr.next
+    return node
 
 class LinkdeList:
     def __init__(self,head=None):
@@ -338,4 +362,4 @@ c.next = d
 
 link = SingleLinkedlist(a)
 print(link.reverse(a))
-print(link.printlist())
+print(link.printlist()) 
