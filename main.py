@@ -13,6 +13,7 @@ D = Node(1)
 A.next = B
 B.next = C
 C.next = D
+print(A)
 
 
 class LinkedList:
