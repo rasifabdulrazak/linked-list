@@ -22,7 +22,7 @@ class LinkedList:
         
     def getbyindex(self,index):
         curr = self.head
-        count = 0
+        count = 0 
         while curr:
             if index == count: return curr.val
             count+=1
