@@ -397,3 +397,30 @@ def merge_two_sorted_list(l1:TreeNode,l2:TreeNode):
             node.next = l1
         else:
             pass
+        
+        
+# rotate k place to right
+def rotate_list_ktimes(head:TreeNode,k:int):
+    if not head or not head.next: return head
+    length = 0
+    curr = head
+    while curr:
+        curr = curr.next
+        length += 1
+    k = k%length
+    
+    slow = head
+    fast = head
+    for _ in range(k):
+        fast = fast.next
+        
+    while fast.next:
+        slow = slow.next
+        fast = fast.next
+        
+    fast.next = head
+    newhead = slow.next
+    slow.next = None
+    return newhead
+
+print(rotate_list_ktimes(A,100))
