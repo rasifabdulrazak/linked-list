@@ -388,3 +388,12 @@ def addTwoNumbers(l1: Node, l2: Node) -> Node:
         return dummy.next
     
 print(addTwoNumbers(a,a)) 
+
+
+def merge_two_sorted_list(l1:TreeNode,l2:TreeNode):
+    node = Node(0,None)
+    while l1 and l2:
+        if l1.val < l2.val:
+            node.next = l1
+        else:
+            pass
