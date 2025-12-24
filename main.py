@@ -425,3 +425,26 @@ def rotate_list_ktimes(head:TreeNode,k:int):
     return newhead
 
 print(rotate_list_ktimes(A,100))
+
+
+def swap_node_in_pairs(head:TreeNode):
+    if not head or not head.next: return head
+    dummy = TreeNode(0)
+    dummy.next = head
+    
+    p = dummy
+    c = head
+    n = head.next
+    
+    while c and n:
+        p.next = n
+        c.next = n.next
+        n.next = c
+        
+        p = c
+        c = p.next
+        n = c.next if c else None
+        
+    return dummy.next
+
+print(swap_node_in_pairs(A))
