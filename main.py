@@ -448,3 +448,13 @@ def swap_node_in_pairs(head:TreeNode):
     return dummy.next
 
 print(swap_node_in_pairs(A))
+
+def swap_recurssion(head:TreeNode):
+    if not head or not head.next: return head
+    l = head
+    r = head.next
+    l.next = swap_recurssion(r.next)
+    r.next = l
+    return r
+
+print(swap_recurssion(A))
