@@ -407,8 +407,9 @@ def rotate_list_ktimes(head:TreeNode,k:int):
     while curr:
         curr = curr.next
         length += 1
+        
     k = k%length
-    
+     
     slow = head
     fast = head
     for _ in range(k):
